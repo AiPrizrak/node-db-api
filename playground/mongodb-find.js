@@ -16,10 +16,22 @@ client.collection('Todos')
     console.log('Unable to fetch todos', err);
         });
         
-client.collection('Users')
-.find({name: 'Andrew'})
-.count()
-.then((count) => console.log(`Todos Andrews count: ${count}`)
-, (err) => console.log('Unable to count Andrews'));
+// client.collection('Users')
+// .find({name: 'Andrew'})
+// .count()
+// .then((count) => console.log(`Todos Andrews count: ${count}`)
+// , (err) => console.log('Unable to count Andrews'));
+// client.collection('Users').deleteMany({name: 'Deadman'}, (err, obj) => {
+//     if (err){
+//         return console.log('Could not delete from database');
+//     }
+//     console.log(obj);
+// });
+client.collection('Users').findAndDelete({name: 'Andrew'}, (err, obj) => {
+    if (err){
+        return console.log('cannot delete query');
+    }
+    console.log(obj.result);
+});
 client.close();
 });
